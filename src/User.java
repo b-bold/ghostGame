@@ -2,35 +2,27 @@ import java.util.Scanner;
 
 
 public class User {
-    private int id = 1;
+    private int id = 0;
     private String name;
     private Boolean isChallenging = false;
     private char lastLetter = '0';
-    private int lastId = this.id;
+    static int lastId = 0;
 
     // build a constructor to ask for name which creates a
     // new player + automatic id (should increase by 1 for every
     // new player
     User () {
         name = getNameFromUser();
-        createId();
+        this.createId();
     }
 
     public int getId(){
         return this.id;
     }
 
-    private void setId(int newId) {
-        this.id = newId;
-    }
-
-    private void createId (){
-        if (lastId == 1) {
-            this.id = 1;
-        } else {
-             this.id = lastId + 1;
-             lastId = this.id;
-        }
+    private void createId () {
+       lastId += 1;
+       this.id = lastId;
     }
 
     public String getName() {
@@ -39,33 +31,6 @@ public class User {
 
     public void setName(String newName) {
         this.name = newName;
-    }
-
-    // get user created name then set it to field name
-    public String getNameFromUser() {
-        Scanner scanner;
-        scanner = new Scanner(System.in);
-
-        // CLI request for user generated name
-        System.out.println("Type your name: ");
-        System.out.flush();
-        String proposedName = scanner.nextLine();
-
-        // check that proposedName is all letters
-        // if not loop through and get the input again.
-        for (int i = 0; i < proposedName.length(); i++)  {
-            char lowerLetter = proposedName.charAt(i);
-            int ascLetter = lowerLetter;
-
-            if (ascLetter < 97 || ascLetter > 122) {
-                System.out.println("Try Again");
-                return getNameFromUser();
-            }
-        }
-
-        // set the checked name as the field name
-        this.setName(proposedName);
-        return "Welcome to the Ghost Game " + proposedName;
     }
 
     public Boolean getIsChallenging() {
@@ -83,20 +48,26 @@ public class User {
     public char nextGuess() {
         Scanner scanner;
         scanner = new Scanner(System.in);
+        Boolean loopAgain = true;
+        char lowerLetter = '-';
 
-        System.out.println("Guess one letter: ");
-        System.out.flush();
-        String letter = scanner.nextLine();
+        while (loopAgain == true) {
 
-        if (letter.length() > 1) {
-            return nextGuess();
-        }
+            System.out.println("Guess one letter: ");
+            System.out.flush();
+            String letter = scanner.nextLine(); // .chatAt(0)
 
-        char lowerLetter = letter.toLowerCase().charAt(0);
-        int ascLetter = lowerLetter;
+            if (letter.length() > 1) {
+                continue;
+            }
 
-        if (ascLetter < 97 || ascLetter > 122) {
-            lowerLetter = nextGuess();
+            lowerLetter = letter.toLowerCase().charAt(0);
+            int ascLetter = lowerLetter;
+
+            if (ascLetter < 97 || ascLetter > 122) {
+                continue;
+            }
+            loopAgain = false;
         }
 
         this.lastLetter = lowerLetter;
@@ -108,13 +79,50 @@ public class User {
         return this.name;
     }
 
+
+    // get user created name then set it to field name
+    public String getNameFromUser() {
+        Scanner scanner;
+        scanner = new Scanner(System.in);
+        Boolean loopAgain = true;
+
+        // CLI request for user generated name
+        System.out.println("Type your name: ");
+        String proposedName = scanner.nextLine();
+
+
+        while (loopAgain == true) {
+            // check that proposedName is all letters
+            // if not loop through and get the input again.
+            for (int i = 0; i < proposedName.length(); i++) {
+                // lower the letter
+                proposedName.toLowerCase();
+                char lowerLetter = proposedName.toLowerCase().charAt(i);
+                int ascLetter = lowerLetter;
+
+                if (ascLetter < 97 || ascLetter > 122) {
+                    System.out.println("Try Again");
+                    System.out.println("Type your name: ");
+                    proposedName = scanner.nextLine();
+                    continue;
+                }
+                loopAgain = false;
+            }
+        }
+
+        // set the checked name as the field name
+        this.setName(proposedName);
+        return "Welcome to the Ghost Game " + proposedName;
+    }
+
+
     // for testing purposes
     public static void main(String[] args) {
         User neka = new User();
-//        System.out.println(neka.id);
-//        System.out.println(neka.isChallenging);
-//        System.out.println(neka.lastLetter);
-//        char letter = neka.nextGuess();
-//        System.out.println("your guess is: " + letter);
+        System.out.println(neka.getName());
+        System.out.println(neka.getId());
+        User nazy = new User();
+        System.out.println(nazy.getName());
+        System.out.println(nazy.getId());
     }
 }
