@@ -14,6 +14,8 @@ public class Board {
         return currentPlayer.getName();
     }
 
+
+
     // for testing purposes
     public static void main(String[] args) {
         System.out.println();

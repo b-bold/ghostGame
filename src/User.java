@@ -6,13 +6,14 @@ public class User {
     private String name;
     private Boolean isChallenging = false;
     private char lastLetter = '0';
-    static int lastId = 0;
+    static private int lastId = 0;
 
     // build a constructor to ask for name which creates a
     // new player + automatic id (should increase by 1 for every
     // new player
     User () {
-        name = getNameFromUser();
+        String proposedName = getNameFromUser();
+        this.setName(proposedName);
         this.createId();
     }
 
@@ -30,7 +31,9 @@ public class User {
     }
 
     public void setName(String newName) {
+
         this.name = newName;
+        System.out.println("Hi" + this.name);
     }
 
     public Boolean getIsChallenging() {
@@ -81,7 +84,7 @@ public class User {
 
 
     // get user created name then set it to field name
-    public String getNameFromUser() {
+    static private String getNameFromUser() {
         Scanner scanner;
         scanner = new Scanner(System.in);
         Boolean loopAgain = true;
@@ -111,8 +114,7 @@ public class User {
         }
 
         // set the checked name as the field name
-        this.setName(proposedName);
-        return "Welcome to the Ghost Game " + proposedName;
+        return proposedName;
     }
 
 
