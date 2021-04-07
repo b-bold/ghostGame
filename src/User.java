@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 public class User {
     private int id = 0;
     private String name;
@@ -33,7 +32,7 @@ public class User {
     public void setName(String newName) {
 
         this.name = newName;
-        System.out.println("Hi" + this.name);
+        System.out.println("Hi " + this.name);
     }
 
     public Boolean getIsChallenging() {
@@ -57,7 +56,6 @@ public class User {
         while (loopAgain == true) {
 
             System.out.println("Guess one letter: ");
-            System.out.flush();
             String letter = scanner.nextLine(); // .chatAt(0)
 
             if (letter.length() > 1) {
@@ -123,8 +121,8 @@ public class User {
         User neka = new User();
         System.out.println(neka.getName());
         System.out.println(neka.getId());
-        User nazy = new User();
-        System.out.println(nazy.getName());
-        System.out.println(nazy.getId());
+        User keith = new User();
+        System.out.println(keith.getName());
+        System.out.println(keith.getId());
     }
 }

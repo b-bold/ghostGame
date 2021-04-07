@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 
 public class Board {
     private StringBuilder wordSoFar = new StringBuilder();
@@ -14,11 +14,22 @@ public class Board {
         return currentPlayer.getName();
     }
 
-
+    public String viewBoard () {
+        System.out.println("*************************");
+        System.out.println("Current Player: " + this.currentPlayer.getName());
+        System.out.println("Current Word So Far: " + this.getWordSoFar());
+        System.out.println("*************************");
+        return "let's keep going";
+    }
 
     // for testing purposes
     public static void main(String[] args) {
-        System.out.println();
+        Board ghost = new Board();
+        User neka = new User();
+        ghost.setCurrentPlayer(neka);
+        System.out.println(ghost.getCurrentPlayer());
+        System.out.println(ghost.getWordSoFar().append('a'));
+        System.out.println(ghost.viewBoard());
     }
 
 }
