@@ -9,14 +9,14 @@ public class Game {
 // get all players to be created at once and
     // put them all in the allPlayers arraylist
     public void populateAllPlayers() {
-        Boolean morePlayers = true;
+        boolean morePlayers = true;
 
         while (morePlayers) {
             User newPlayer = new User();
             allPlayers.add(newPlayer);
             allActivePlayers.add(newPlayer);
 
-            String response = getUserInput();
+            String response = userInputAboutMorePlayers();
 
             if (response.equals("y") ) {
                 morePlayers = true;
@@ -24,11 +24,41 @@ public class Game {
                 System.out.println("please add another player");
                 morePlayers = true;
             } else if (response.equals("n")) {
+                System.out.println("ok let's play!");
                 morePlayers = false;
+            } else {
+                morePlayers = loopForUsableInput();
             }
         }
 
         ghost.setCurrentPlayer(allActivePlayers.get(0));
+    }
+
+    public boolean loopForUsableInput() {
+        // infinite while loop
+        // tell then to try again
+        // print a prompt
+        // get user input
+        // check to see if it's 'y' or 'n'
+        // if 'y' return true
+        // elsif 'n' return false
+        boolean invalidInput = true;
+        boolean returnStatement = false;
+
+        while (invalidInput) {
+            System.out.println("please enter either 'y' or 'n' to choose if another player needs to be added");
+            Scanner scanner;
+            scanner = new Scanner(System.in);
+            String response = scanner.nextLine();
+
+            if (response.equals("y")) {
+                returnStatement = true;
+                invalidInput = false;
+            } else if (response.equals("n")) {
+                invalidInput = false;
+            }
+        }
+        return returnStatement;
     }
 
     public void playGhost() {
@@ -58,12 +88,11 @@ public class Game {
         return allPlayers.size() != 1;
     }
 
-    public String getUserInput() {
+    public String userInputAboutMorePlayers() {
         Scanner scanner;
         scanner = new Scanner(System.in);
         System.out.println("Are there any other players that will be playing too? (y/n) ");
-        String response = new String();
-        response = scanner.nextLine();
+        String response = scanner.nextLine();
         return response;
     }
 
