@@ -36,7 +36,7 @@ public class Game {
     public void playGhost() {
         populateAllPlayers();
 
-        while (hasWon() == false) {
+        while (hasNotWon() == true) {
             for (int i = 0; i <= allActivePlayers.size() - 1; i++) {
                 System.out.println(ghost.viewBoard());
                 User ele = allActivePlayers.get(i);
@@ -61,7 +61,7 @@ public class Game {
 
     }
 
-    public Boolean hasWon() {
+    public Boolean hasNotWon() {
         return allPlayers.size() != 1;
     }
 
