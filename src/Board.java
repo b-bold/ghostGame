@@ -14,12 +14,16 @@ public class Board {
         return currentPlayer.getName();
     }
 
-    public String viewBoard () {
-        System.out.println("*************************");
-        System.out.println("Current Player: " + this.currentPlayer.getName());
-        System.out.println("Current Word So Far: " + this.getWordSoFar());
-        System.out.println("*************************");
-        return "let's keep going";
+    public StringBuilder viewBoard () {
+        StringBuilder view = new StringBuilder();
+        view.append("*************************");
+        view.append("\n");
+        view.append("Current Player: " + this.currentPlayer.getName());
+        view.append("\n");
+        view.append("Current Word So Far: " + this.getWordSoFar());
+        view.append("\n");
+        view.append("*************************");
+        return view;
     }
 
     // for testing purposes

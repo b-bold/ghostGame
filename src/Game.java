@@ -12,13 +12,20 @@ public class Game {
         Boolean morePlayers = true;
 
         while (morePlayers) {
-            String response = new String();
-            response = getUserInput();
+            User newPlayer = new User();
+            allPlayers.add(newPlayer);
+            allActivePlayers.add(newPlayer);
 
-            if (response != "y") {
-                User newPlayer = new User();
-                allPlayers.add(newPlayer);
-                allActivePlayers.add(newPlayer);
+            String response = getUserInput();
+
+            if (response.equals("y") ) {
+                morePlayers = true;
+            }
+            else if (allActivePlayers.size() <= 1) {
+                System.out.println("please add another player");
+                morePlayers = true;
+            }
+            else if (response.equals("n")) {
                 morePlayers = false;
             }
         }
@@ -70,6 +77,6 @@ public class Game {
     // for testing purposes
     public static void main(String[] args) {
         Game ghost = new Game();
-        ghost.playGhost();
+        ghost.populateAllPlayers();
     }
 }
