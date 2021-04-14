@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    private ArrayList<User> allPlayers = new ArrayList();
-    private ArrayList<User> allActivePlayers = new ArrayList();
+    private ArrayList<User> allPlayers = new ArrayList<>();
+    private ArrayList<User> allActivePlayers = new ArrayList<>();
     private Board ghost = new Board();
 
 // get all players to be created at once and
@@ -20,12 +20,10 @@ public class Game {
 
             if (response.equals("y") ) {
                 morePlayers = true;
-            }
-            else if (allActivePlayers.size() <= 1) {
+            } else if (allActivePlayers.size() <= 1) {
                 System.out.println("please add another player");
                 morePlayers = true;
-            }
-            else if (response.equals("n")) {
+            } else if (response.equals("n")) {
                 morePlayers = false;
             }
         }
@@ -40,6 +38,7 @@ public class Game {
             for (int i = 0; i <= allActivePlayers.size() - 1; i++) {
                 System.out.println(ghost.viewBoard());
                 User ele = allActivePlayers.get(i);
+                ghost.setCurrentPlayer(ele);
                 char letter = ele.nextGuess();
                 ghost.getWordSoFar().append(letter);
 
@@ -49,12 +48,6 @@ public class Game {
                     // delete current player from the game and set current player to next
                     // element
                     // break into the next loop
-
-                if (allActivePlayers.get(i + 1) == null ) {
-                    continue;
-                }
-
-                ghost.setCurrentPlayer(allActivePlayers.get(i + 1));
             }
 
         }
@@ -77,6 +70,6 @@ public class Game {
     // for testing purposes
     public static void main(String[] args) {
         Game ghost = new Game();
-        ghost.populateAllPlayers();
+        ghost.playGhost();
     }
 }
