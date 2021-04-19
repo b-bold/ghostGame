@@ -21,7 +21,7 @@ public class Game {
             if (response.equals("y") ) {
                 morePlayers = true;
             } else if (allActivePlayers.size() <= 1) {
-                System.out.println("please add another player");
+                System.out.println("You need at least 2 players for this game. Please add another player");
                 morePlayers = true;
             } else if (response.equals("n")) {
                 System.out.println("ok let's play!");
@@ -35,13 +35,6 @@ public class Game {
     }
 
     public boolean loopForUsableInput() {
-        // infinite while loop
-        // tell then to try again
-        // print a prompt
-        // get user input
-        // check to see if it's 'y' or 'n'
-        // if 'y' return true
-        // elsif 'n' return false
         boolean invalidInput = true;
         boolean returnStatement = false;
 
@@ -64,7 +57,7 @@ public class Game {
     public void playGhost() {
         populateAllPlayers();
 
-        while (hasNotWon() == true) {
+        while (hasNotWon()) {
             for (int i = 0; i <= allActivePlayers.size() - 1; i++) {
                 System.out.println(ghost.viewBoard());
                 User ele = allActivePlayers.get(i);
@@ -92,8 +85,7 @@ public class Game {
         Scanner scanner;
         scanner = new Scanner(System.in);
         System.out.println("Are there any other players that will be playing too? (y/n) ");
-        String response = scanner.nextLine();
-        return response;
+        return scanner.nextLine();
     }
 
     // for testing purposes
