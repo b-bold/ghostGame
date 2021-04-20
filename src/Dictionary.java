@@ -6,9 +6,10 @@ import java.util.Scanner;
 public class Dictionary {
     private HashSet<String> dictionary= new HashSet<String>();
 
-    public void createDictionary() throws IOException {
+    public void createDictionary() {
         try {
-            URL appAcademyDictionary = new URL("https://assets.aaonline.io/fullstack/ruby/projects/ghost/dictionary.txt");
+            URL appAcademyDictionary =
+                    new URL("https://assets.aaonline.io/fullstack/ruby/projects/ghost/dictionary.txt");
             Scanner sc = new Scanner(appAcademyDictionary.openStream());
             while (sc.hasNext()) {
                 dictionary.add(sc.next());
@@ -24,13 +25,8 @@ public class Dictionary {
 
     public static void main(String[] args) {
         Dictionary allWords = new Dictionary();
-        try {
-            allWords.createDictionary();
-        } catch(IOException ex) {
-            ex.printStackTrace();
-        }
-
-        System.out.println(allWords.getDictionary());
+        allWords.createDictionary();
+        System.out.println(String.format("Dictionary has %d words", allWords.getDictionary().size()));
     }
 }
 
