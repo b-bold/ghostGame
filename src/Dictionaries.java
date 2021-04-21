@@ -3,7 +3,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class Dictionary {
+public interface Dictionaries {
+
+    public void createDictionary();
+
+    // initialize
+    public boolean partialWordExists(String partialWord);
+
+}
+
+
+public abstract class ListDictionary implements Dictionaries {
+
     private ArrayList<String> allWords = new ArrayList<String>();
 
     public void createDictionary() {
@@ -22,7 +33,7 @@ public class Dictionary {
     // check each word to see if there exists a word that contains
     // all of current partialWord. This will be proof that
     // it is a valid
-    public boolean doesPartialWordExist(String partialWord) {
+    abstract boolean doesPartialWordExist(String partialWord) {
         boolean found = false;
         String partialLower = partialWord.toLowerCase();
 
@@ -43,7 +54,7 @@ public class Dictionary {
             }
         }
 
-    return found; // return false
+        return found; // return false
     }
 
     public boolean compareWords(String word, String partialLower) {
@@ -68,24 +79,17 @@ public class Dictionary {
 
     // print every word in dictionary
     public void getDictionary() {
-            for (String word : allWords) {
-                System.out.println(word);
-            }
+        for (String word : allWords) {
+            System.out.println(word);
+        }
     }
 
     //print length of dictionary arrayList
     public int getDictionarySize() {
         return allWords.size();
     }
-
-    public static void main(String[] args) {
-        Dictionary allWords = new Dictionary();
-        allWords.createDictionary();
-        System.out.println(allWords.getDictionarySize());
-        System.out.println(allWords.doesPartialWordExist("aar"));
-        System.out.println(allWords.doesPartialWordExist("randm"));
-        System.out.println(allWords.doesPartialWordExist("a"));
-    }
 }
 
+public class HashDictionary implements Dictionaries {
 
+}
