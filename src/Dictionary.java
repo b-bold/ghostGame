@@ -22,24 +22,50 @@ public class Dictionary {
     // check each word to see if there exists a word that contains
     // all of current partialWord. This will be proof that
     // it is a valid
-//    public boolean searchDictionary(String partialWord) {
-//        boolean found = false;
-//        String partialLower = partialWord.toLowerCase();
-//
-//        //check each letter against each word of the dictionary
-//        // if we get to the end of the partialLower but not the dictionaryLower
-//        // then we should return true
-//        for (String word : dictionary) {
-//
-//            int i = 0;
-//            while (i <= partialLower.length() - 1) {
-//                int currentPartialLetter = (int) partialLower.charAt(i);
-//                int currentWordLetter = (int) word.charAt(i);
-//
-//
-//        }
-//
-//    }
+    public boolean doesPartialWordExist(String partialWord) {
+        boolean found = false;
+        String partialLower = partialWord.toLowerCase();
+
+        //check each letter against each word of the dictionary
+        // if we get to the end of the partialLower but not the dictionaryLower
+        // then we should return true
+        for (String word : allWords) {
+            if (word.length() < partialLower.length()) {
+                continue;
+            }
+            boolean compareWordsResult = compareWords(word, partialLower);
+
+            if (compareWordsResult) {
+                found = true;
+                break;
+            } else {
+                found = false;
+            }
+        }
+
+    return found;
+    }
+
+    public boolean compareWords(String word, String partialLower) {
+        boolean exist = false;
+
+        int i = 0;
+        while (i <= partialLower.length() - 1) {
+            int currentPartialLetter = (int) partialLower.charAt(i); // r
+            int currentWordLetter = (int) word.charAt(i);
+
+            if (currentWordLetter == currentPartialLetter) { // same
+                exist = true;
+            } else {
+                exist = false;
+                break;
+            }
+            i++;
+        }
+
+        return exist;
+    }
+
     // print every word in dictionary
     public void getDictionary() {
             for (String word : allWords) {
@@ -56,7 +82,8 @@ public class Dictionary {
         Dictionary allWords = new Dictionary();
         allWords.createDictionary();
         System.out.println(allWords.getDictionarySize());
-//        System.out.println(allWords.searchDictionary("reca")); // true
+        System.out.println(allWords.doesPartialWordExist("aar"));
+        System.out.println(allWords.doesPartialWordExist("random"));
     }
 }
 
