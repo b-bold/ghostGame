@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class Dictionary {
-    private ArrayList<String> dictionary= new ArrayList<String>();
+    private ArrayList<String> allWords = new ArrayList<String>();
 
     public void createDictionary() {
         try {
@@ -12,7 +12,7 @@ public class Dictionary {
                     new URL("https://assets.aaonline.io/fullstack/ruby/projects/ghost/dictionary.txt");
             Scanner sc = new Scanner(appAcademyDictionary.openStream());
             while (sc.hasNext()) {
-                dictionary.add(sc.next());
+                allWords.add(sc.next());
             }
         } catch(IOException ex) {
             ex.printStackTrace();
@@ -42,14 +42,14 @@ public class Dictionary {
 //    }
     // print every word in dictionary
     public void getDictionary() {
-            for (String str : dictionary) {
-                System.out.println(str);
+            for (String word : allWords) {
+                System.out.println(word);
             }
     }
 
     //print length of dictionary arrayList
     public int getDictionarySize() {
-        return dictionary.size();
+        return allWords.size();
     }
 
     public static void main(String[] args) {
