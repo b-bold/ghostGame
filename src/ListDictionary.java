@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class Dictionary {
+public class ListDictionary implements Dictionaries {
     private ArrayList<String> allWords = new ArrayList<String>();
 
     public void createDictionary() {
@@ -22,7 +22,7 @@ public class Dictionary {
     // check each word to see if there exists a word that contains
     // all of current partialWord. This will be proof that
     // it is a valid
-    public boolean doesPartialWordExist(String partialWord) {
+    public boolean partialWordExists(String partialWord) {
         boolean found = false;
         String partialLower = partialWord.toLowerCase();
 
@@ -79,12 +79,12 @@ public class Dictionary {
     }
 
     public static void main(String[] args) {
-        Dictionary allWords = new Dictionary();
+        ListDictionary allWords = new ListDictionary();
         allWords.createDictionary();
         System.out.println(allWords.getDictionarySize());
-        System.out.println(allWords.doesPartialWordExist("aar"));
-        System.out.println(allWords.doesPartialWordExist("randm"));
-        System.out.println(allWords.doesPartialWordExist("a"));
+        System.out.println(allWords.partialWordExists("aar"));
+        System.out.println(allWords.partialWordExists("randm"));
+        System.out.println(allWords.partialWordExists("a"));
     }
 }
 
