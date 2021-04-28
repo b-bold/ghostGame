@@ -20,10 +20,6 @@ public class HashDictionary implements Dictionaries {
         }
     }
 
-    public boolean partialWordExists(String partialWord) {
-        return false;
-    }
-
     public void addPartialWords(String word) {
         StringBuilder growingWord = new StringBuilder();
 
@@ -36,6 +32,13 @@ public class HashDictionary implements Dictionaries {
         }
     }
 
+    public boolean partialWordExists(String partialWord) {
+        if (allWords.contains(partialWord)) {
+            return true;
+        }
+        return false;
+    }
+
     public HashSet getDictionary() {
         for (String word : allWords) {
             System.out.println(word);
@@ -43,10 +46,17 @@ public class HashDictionary implements Dictionaries {
         return allWords;
     }
 
+    public int getDictionarySize() {
+        return allWords.size();
+    }
+
     public static void main(String[] args) {
         HashDictionary allWords = new HashDictionary();
-        allWords.addPartialWords("yellow");
-        System.out.println(allWords.getDictionary());
+        allWords.createDictionary();
+        System.out.println(allWords.getDictionarySize());
+        System.out.println(allWords.partialWordExists("aar"));
+        System.out.println(allWords.partialWordExists("randm"));
+        System.out.println(allWords.partialWordExists("a"));
     }
 
 }
