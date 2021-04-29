@@ -81,9 +81,10 @@ public class ListDictionary implements Dictionaries {
     public static void main(String[] args) {
         ListDictionary allWords = new ListDictionary();
         allWords.createDictionary();
+        System.out.println(allWords.compareWords("string", "string"));
         System.out.println(allWords.getDictionarySize());
         System.out.println(allWords.partialWordExists("aar"));
-        System.out.println(allWords.partialWordExists("randm"));
+        System.out.println(allWords.partialWordExists("random"));
         System.out.println(allWords.partialWordExists("a"));
     }
 }

@@ -27,19 +27,19 @@ public class Game {
                 System.out.println("ok let's play!");
                 morePlayers = false;
             } else {
-                morePlayers = loopForUsableInput();
+                morePlayers = loopForUsableInput("please enter either 'y' or 'n' to choose if another player needs to be added");
             }
         }
 
         ghost.setCurrentPlayer(allActivePlayers.get(0));
     }
 
-    public boolean loopForUsableInput() {
+    public boolean loopForUsableInput(String printLine) {
         boolean invalidInput = true;
         boolean returnStatement = false;
 
         while (invalidInput) {
-            System.out.println("please enter either 'y' or 'n' to choose if another player needs to be added");
+            System.out.println(printLine);
             Scanner scanner;
             scanner = new Scanner(System.in);
             String response = scanner.nextLine();
@@ -65,6 +65,15 @@ public class Game {
                 char letter = ele.nextGuess();
                 ghost.getWordSoFar().append(letter);
 
+                if (hasChallenged()) {
+                    // ask which player is challenging
+                    // save that player in a variable
+                    // check against the dictionary
+                    // if the partial word does not exist
+                        //
+                }
+
+
                 // get user input to see if any other players challenge
                     // figure out who is challenging
                     // check against dictionary
@@ -77,8 +86,12 @@ public class Game {
 
     }
 
-    public Boolean hasNotWon() {
+    public boolean hasNotWon() {
         return allPlayers.size() != 1;
+    }
+
+    public boolean hasChallenged() {
+        return loopForUsableInput("does anyone challenge?");
     }
 
     public String userInputAboutMorePlayers() {
@@ -91,6 +104,6 @@ public class Game {
     // for testing purposes
     public static void main(String[] args) {
         Game ghost = new Game();
-        ghost.playGhost();
+        ghost.populateAllPlayers();
     }
 }
