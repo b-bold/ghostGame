@@ -5,6 +5,7 @@ public class Game {
     private ArrayList<User> allPlayers = new ArrayList<>();
     private ArrayList<User> allActivePlayers = new ArrayList<>();
     private Board ghost = new Board();
+    private User challenger = new User();
 
 // get all players to be created at once and
     // put them all in the allPlayers arraylist
@@ -89,6 +90,20 @@ public class Game {
     public boolean hasNotWon() {
         return allPlayers.size() != 1;
     }
+
+// WHEN THIS METHOD IS UNCOMMENTED IT CAUSES A BUNCH OF ERRORS. TALK TO JEAN ABOUT THIS
+//    public void gettingChallengerName() {
+//        Scanner scanner;
+//        scanner = new Scanner(System.in);
+//        System.out.println("please type your name ");
+//        String potentialUser = scanner.nextLine();
+//
+//
+//        for (User player: allActivePlayers) {
+//            if (player.getName().equals(potentialUser.toLowerCase())) {
+//                challenger = player;
+//            }
+//    }
 
     public boolean hasChallenged() {
         return loopForUsableInput("does anyone challenge?");
