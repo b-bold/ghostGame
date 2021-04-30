@@ -32,7 +32,7 @@ public class HashDictionary implements Dictionaries {
         }
     }
 
-    public boolean partialWordExists(String partialWord) {
+    public boolean partialWordExists(StringBuilder partialWord) {
         if (allWords.contains(partialWord)) {
             return true;
         }
@@ -54,9 +54,6 @@ public class HashDictionary implements Dictionaries {
         HashDictionary allWords = new HashDictionary();
         allWords.createDictionary();
         System.out.println(allWords.getDictionarySize());
-        System.out.println(allWords.partialWordExists("aar"));
-        System.out.println(allWords.partialWordExists("randm"));
-        System.out.println(allWords.partialWordExists("a"));
     }
 
 }

@@ -10,17 +10,12 @@ public class User {
     // build a constructor to ask for name which creates a
     // new player + automatic id (should increase by 1 for every
     // new player
-    User () {
-        String proposedName = getNameFromUser();
-        this.setName(proposedName);
-        this.createId();
-    }
 
     public int getId(){
         return this.id;
     }
 
-    private void createId () {
+    protected void createId () {
        lastId += 1;
        this.id = lastId;
     }
@@ -82,7 +77,7 @@ public class User {
 
 
     // get user created name then set it to field name
-    static private String getNameFromUser() {
+    static protected String getNameFromUser() {
         Scanner scanner;
         scanner = new Scanner(System.in);
         Boolean loopAgain = true;

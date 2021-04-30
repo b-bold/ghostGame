@@ -22,9 +22,9 @@ public class ListDictionary implements Dictionaries {
     // check each word to see if there exists a word that contains
     // all of current partialWord. This will be proof that
     // it is a valid
-    public boolean partialWordExists(String partialWord) {
+    public boolean partialWordExists(StringBuilder partialWord) {
         boolean found = false;
-        String partialLower = partialWord.toLowerCase();
+        String partialLower = partialWord.toString().toLowerCase();
 
         //check each letter against each word of the dictionary
         // if we get to the end of the partialLower but not the dictionaryLower
@@ -83,9 +83,7 @@ public class ListDictionary implements Dictionaries {
         allWords.createDictionary();
         System.out.println(allWords.compareWords("string", "string"));
         System.out.println(allWords.getDictionarySize());
-        System.out.println(allWords.partialWordExists("aar"));
-        System.out.println(allWords.partialWordExists("random"));
-        System.out.println(allWords.partialWordExists("a"));
+
     }
 }
 
