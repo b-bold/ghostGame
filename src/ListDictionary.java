@@ -83,7 +83,6 @@ public class ListDictionary implements Dictionaries {
         allWords.createDictionary();
         System.out.println(allWords.compareWords("string", "string"));
         System.out.println(allWords.getDictionarySize());
-
     }
 }
 

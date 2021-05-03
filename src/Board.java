@@ -6,6 +6,12 @@ public class Board {
 
     public StringBuilder getWordSoFar() { return this.wordSoFar; }
 
+    public void resetWordSoFar() {
+        StringBuilder stringBuilderObj = new StringBuilder();
+        stringBuilderObj.setLength(0);
+        this.wordSoFar = stringBuilderObj;
+    }
+
     public User getCurrentPlayer() { return this.currentPlayer; }
 
     public String setCurrentPlayer(User player) {

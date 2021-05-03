@@ -84,33 +84,26 @@ public class Game {
                     String potentialPlayer = this.promptingChallengerName();
                     this.findChallenger(potentialPlayer);
                     if (dictionary.partialWordExists(ghost.getWordSoFar())) {
+                        System.out.println(dictionary.partialWordExists(ghost.getWordSoFar()));
                         allActivePlayers.remove(this.challenger);
                         System.out.println("sorry but " + this.challenger + " is out of the game because " +
                                 "you can continue making a word from here.");
-                        // set wordSoFar back to nothing
-                        // stringBuilderObj.setLength(0).
-                        // then try break out of this loop. 
+
+                        // reset wordSoFar
+                        ghost.resetWordSoFar();
                         break;
                     } else {
+                        System.out.println(dictionary.partialWordExists(ghost.getWordSoFar()));
                         allActivePlayers.remove(ghost.getCurrentPlayer());
                         System.out.println("sorry but " + ghost.getCurrentPlayer() + " is out of the game because " +
                                 "you cannot continue making a word from here.");
-                        // start another round
-                            // reset word
-                            //??
+                        ghost.resetWordSoFar();
+                        break;
                     }
                 } else {
                     continue;
                 }
 
-                System.out.println("THAT WAS 1 FULL ROUND");
-
-                // get user input to see if any other players challenge
-                    // figure out who is challenging
-                    // check against dictionary
-                    // delete current player from the game and set current player to next
-                    // element
-                    // break into the next loop
             }
 
         }
