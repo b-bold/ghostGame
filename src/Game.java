@@ -87,6 +87,10 @@ public class Game {
                         allActivePlayers.remove(this.challenger);
                         System.out.println("sorry but " + this.challenger + " is out of the game because " +
                                 "you can continue making a word from here.");
+                        // set wordSoFar back to nothing
+                        // stringBuilderObj.setLength(0).
+                        // then try break out of this loop. 
+                        break;
                     } else {
                         allActivePlayers.remove(ghost.getCurrentPlayer());
                         System.out.println("sorry but " + ghost.getCurrentPlayer() + " is out of the game because " +
