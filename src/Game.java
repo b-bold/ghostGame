@@ -86,18 +86,20 @@ public class Game {
                     if (dictionary.partialWordExists(ghost.getWordSoFar())) {
                         System.out.println(dictionary.partialWordExists(ghost.getWordSoFar()));
                         allActivePlayers.remove(this.challenger);
-                        System.out.println("sorry but " + this.challenger + " is out of the game because " +
+                        System.out.println(this.challenger + " is out of the game because " +
                                 "you can continue making a word from here.");
 
                         // reset wordSoFar
                         ghost.resetWordSoFar();
+                        i = 0;
                         break;
                     } else {
-                        System.out.println(dictionary.partialWordExists(ghost.getWordSoFar()));
+//                        System.out.println(dictionary.partialWordExists(ghost.getWordSoFar()));
                         allActivePlayers.remove(ghost.getCurrentPlayer());
-                        System.out.println("sorry but " + ghost.getCurrentPlayer() + " is out of the game because " +
+                        System.out.println(ghost.getCurrentPlayer() + " is out of the game because " +
                                 "you cannot continue making a word from here.");
                         ghost.resetWordSoFar();
+                        i = 0;
                         break;
                     }
                 } else {
@@ -107,11 +109,11 @@ public class Game {
             }
 
         }
-
+        System.out.println("the winner is: " + allActivePlayers.get(0));
     }
 
     public boolean hasNotWon() {
-        return allPlayers.size() != 1;
+        return allActivePlayers.size() != 1;
     }
 
 
